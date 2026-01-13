@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bitm4ker's Game Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top left, #1a1a2e, #16213e);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+        }
+
+        .game-container {
+            width: 100%;
+            height: 80vh;
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .nav-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn.active {
+            background: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .page-transition {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .prose-custom p {
+            margin-bottom: 1.25rem;
+            color: #94a3b8;
+            line-height: 1.75;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                    bitm4ker's Game Hub
+                </h1>
+                <p class="text-gray-400 mt-1">Project Terminal: V3.0 Final Build</p>
+            </div>
+            
+            <nav class="flex gap-4 p-2 glass shrink-0">
+                <button onclick="showPage('overview')" id="btn-overview" class="nav-btn active px-6 py-2 rounded-xl font-medium">
+                    Overview
+                </button>
+                <button onclick="showPage('page1')" id="btn-page1" class="nav-btn px-6 py-2 rounded-xl font-medium">
+                    Banana Clicker
+                </button>
+                <button onclick="showPage('page2')" id="btn-page2" class="nav-btn px-6 py-2 rounded-xl font-medium">
+                    CS Class Stealth
+                </button>
+            </nav>
+        </header>
+
+        <main id="content-area">
+            <!-- Overview Page -->
+            <section id="page-overview" class="page-transition">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="glass p-8">
+                            <h2 class="text-3xl font-semibold mb-4 text-blue-400">Project Status: Development Log</h2>
+                            <div class="prose-custom">
+                                <p>
+                                    Module V3.0 is live. We have successfully implemented a cloud-based ranking system for the Banana Clicker component. This allows for real-time competitive analysis across the user base.
+                                </p>
+                                <p>
+                                    Additionally, a navigational guidance system (Tutorial) has been deployed to the Classroom Stealth module to reduce cognitive load during initial user onboarding.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold px-2">Live Modules</h3>
+                        <div onclick="showPage('page1')" class="glass p-6 cursor-pointer hover:bg-white/10 transition-all group border-l-4 border-l-transparent hover:border-l-yellow-500">
+                            <h3 class="text-xl font-bold group-hover:text-yellow-400 transition-colors">Banana Clicker V3</h3>
+                            <p class="text-sm text-gray-400">Now with Global Leaderboards.</p>
+                        </div>
+                        <div onclick="showPage('page2')" class="glass p-6 cursor-pointer hover:bg-white/10 transition-all group border-l-4 border-l-transparent hover:border-l-red-500">
+                            <h3 class="text-xl font-bold group-hover:text-red-400 transition-colors">CS Class Stealth</h3>
+                            <p class="text-sm text-gray-400">Survival stealth with Tutorial Guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Page 1 -->
+            <section id="page-page1" class="hidden page-transition">
+                <div class="glass p-4 md:p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold">Banana Clicker: Leaderboard Edition</h2>
+                        <button onclick="showPage('overview')" class="px-4 py-1 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/40 text-sm transition-colors">Exit Application</button>
+                    </div>
+                    <div class="game-container">
+                        <iframe id="game-iframe-1"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Page 2 -->
+            <section id="page-page2" class="hidden page-transition">
+                <div class="glass p-4 md:p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold">Digital Stealth: Mr. Burke's Class</h2>
+                        <button onclick="showPage('overview')" class="px-4 py-1 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/40 text-sm transition-colors">Exit Application</button>
+                    </div>
+                    <div class="game-container">
+                        <iframe id="game-iframe-2"></iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const games = {
+            page1: {
+                iframeId: 'game-iframe-1',
+                source: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Banana Clicker & Leaderboard</title><script src="https://cdn.tailwindcss.com"><\/script><style>@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Inter:wght@400;700&display=swap');body { font-family: 'Inter', sans-serif; background-color: #fefce8; overflow-x: hidden; }.banana-font { font-family: 'Luckiest Guy', cursive; letter-spacing: 2px; }.banana-bounce:active { transform: scale(0.9); }<\/style><\/head><body class="p-4 min-h-screen flex flex-col items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                    <div class="flex flex-col items-center gap-6">
+                        <h1 class="text-4xl banana-font text-yellow-500">CLICK BANANA</h1>
+                        <div class="bg-white/80 p-8 rounded-3xl border-4 border-yellow-400 shadow-xl w-full text-center">
+                            <div id="counter" class="text-6xl font-black text-yellow-600 mb-2">0</div>
+                            <button id="clicker" class="bg-yellow-400 p-8 rounded-full border-8 border-yellow-200 banana-bounce transition-all"><span class="text-6xl">🍌</span></button>
+                        </div>
+                        <button id="submitScore" class="w-full bg-yellow-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-yellow-700">SUBMIT TO LEADERBOARD</button>
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-3xl border-2 border-yellow-300">
+                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2">🏆 Global Top 10</h2>
+                        <div id="leaderboard" class="space-y-2">Loading scores...</div>
+                    </div>
+                </div>
+                <script type="module">
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+                    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+                    import { getFirestore, collection, addDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+                    const firebaseConfig = JSON.parse(parent.__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    const auth = getAuth(app);
+                    const db = getFirestore(app);
+                    const appId = parent.__app_id || 'default-app';
+
+                    let user = null;
+                    let bananas = 0;
+
+                    onAuthStateChanged(auth, u => { if (!u) signInAnonymously(auth); user = u; });
+
+                    document.getElementById('clicker').onclick = () => {
+                        bananas++;
+                        document.getElementById('counter').innerText = bananas;
+                    };
+
+                    document.getElementById('submitScore').onclick = async () => {
+                        if (!user || bananas === 0) return;
+                        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'scores'), {
+                            uid: user.uid,
+                            score: bananas,
+                            timestamp: Date.now()
+                        });
+                        bananas = 0;
+                        document.getElementById('counter').innerText = 0;
+                    };
+
+                    const scoresQuery = collection(db, 'artifacts', appId, 'public', 'data', 'scores');
+                    onSnapshot(scoresQuery, (snapshot) => {
+                        const scores = [];
+                        snapshot.forEach(doc => scores.push(doc.data()));
+                        scores.sort((a, b) => b.score - a.score);
+                        const top10 = scores.slice(0, 10);
+                        document.getElementById('leaderboard').innerHTML = top10.map((s, i) => 
+                            \`<div class="flex justify-between bg-white/50 p-2 rounded-lg border border-yellow-200">
+                                <span>\${i+1}. \${s.uid.substring(0,6)}...</span>
+                                <span class="font-bold">\${s.score} 🍌</span>
+                            </div>\`
+                        ).join('') || "No scores yet!";
+                    }, (err) => { console.error(err); });
+                <\/script></body></html>`
+            },
+            page2: {
+                iframeId: 'game-iframe-2',
+                source: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mr. Burkes Classroom Stealth</title><script src="https://cdn.tailwindcss.com"><\/script><style>@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');body { background: #1a1a1a; margin: 0; overflow: hidden; font-family: 'Press Start 2P', cursive; color: #fff; }.game-overlay { position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; padding: 20px; }#gameCanvas { background: #2d3436; cursor: crosshair; image-rendering: pixelated; }.heat-container { width: 200px; height: 20px; background: #333; border: 2px solid #fff; }.heat-bar { height: 100%; width: 0%; background: #e74c3c; transition: width 0.05s linear; }#phone-ui { position: absolute; bottom: 20px; right: 20px; width: 80px; height: 140px; background: #000; border: 3px solid #666; border-radius: 10px; display: none; overflow: hidden; }#phone-ui.active { display: block; }#snitch-box { position: absolute; background: #fff; color: #000; padding: 5px; font-size: 8px; border-radius: 4px; display: none; }.objective-bar { width: 100%; height: 10px; background: #333; border: 1px solid #aaa; margin-top: 4px; }.progress { height: 100%; background: #3498db; transition: width 0.3s; }.tutorial-layer { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; display: flex; flex-direction: column; items-center justify-center p-8 text-center; }<\/style><\/head><body><div id="tutorial" class="tutorial-layer"><h2>STEALTH TUTORIAL</h2><p class="text-[10px] my-6 leading-loose">1. YOU ARE THE BLUE CIRCLE IN THE BACK CORNER.<br>2. HOLD MOUSE TO SEND MEMES (OBJECTIVE).<br>3. WATCH THE RED "HEAT" BAR. IF IT HITS 100%, YOU ARE CAUGHT.<br>4. BURKE MOVES FAST IF STUDENTS SNITCH ON YOU.<br>5. DON'T GET CAUGHT!</p><button onclick="document.getElementById('tutorial').style.display='none'" class="bg-white text-black px-4 py-2 text-[10px]">START CLASS</button></div><canvas id="gameCanvas"></canvas><div id="snitch-box">MR BURKE! HE'S ON HIS PHONE!</div><div class="game-overlay"><div class="flex justify-between items-start"><div><p class="text-[8px] mb-1">HEAT (SUSPICION)</p><div class="heat-container"><div id="heat-bar" class="heat-bar"></div></div></div><div class="text-right"><p class="text-[8px]">OBJECTIVE: SEND 50 MEMES</p><div class="objective-bar"><div id="obj-progress" class="progress" style="width: 0%"></div></div><p id="meme-count" class="text-[10px] mt-1">0/50</p></div></div></div><div id="phone-ui"><div class="w-full h-full bg-blue-600 flex flex-col p-1"><div class="bg-white/30 h-1/2 w-full flex items-center justify-center text-[10px]">🍌</div><div class="mt-auto bg-green-500 h-4 w-full text-[6px] flex items-center justify-center">SENDING...</div></div></div><div id="game-over" class="fixed inset-0 bg-black/90 flex flex-col items-center justify-center hidden pointer-events-auto"><h2 id="end-title" class="text-red-500 text-3xl mb-4 text-center">CAUGHT!</h2><p id="end-msg" class="mb-8 text-xs text-center">Your phone was confiscated by Mr. Burke.</p><button onclick="location.reload()" class="bg-white text-black px-6 py-3 hover:bg-gray-200">RETRY CLASS</button></div><script>const canvas = document.getElementById('gameCanvas');const ctx = canvas.getContext('2d');const heatBar = document.getElementById('heat-bar');const phoneUI = document.getElementById('phone-ui');const memeCountEl = document.getElementById('meme-count');const objProgress = document.getElementById('obj-progress');const snitchBox = document.getElementById('snitch-box');const gameOverEl = document.getElementById('game-over');let width, height;let memesSent = 0;let heat = 0;let isUsingPhone = false;let gameOver = false;const desks = [];const students = [];const burke = { x: 50, y: 50, targetX: 100, targetY: 100, speed: 1.2, scanAngle: 0 };function init() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; const rows = 4, cols = 5; const spacingX = (width - 120) / (cols - 1); const spacingY = (height - 180) / (rows - 1); for(let r=0; r<rows; r++) { for(let c=0; c<cols; c++) { let isPlayer = (r === rows-1 && c === cols-1); desks.push({ x: 60 + c * spacingX, y: 120 + r * spacingY, isPlayer }); students.push({ snitchChance: 0.0015, state: 'normal', snitchTimer: 0 }); } } }window.addEventListener('mousedown', () => { if(!gameOver) { isUsingPhone = true; phoneUI.classList.add('active'); } });window.addEventListener('mouseup', () => { isUsingPhone = false; phoneUI.classList.remove('active'); } );function update() { if(gameOver) return; if(Math.random() < 0.01 || Math.hypot(burke.x - burke.targetX, burke.y - burke.targetY) < 10) { const d = desks[Math.floor(Math.random() * desks.length)]; burke.targetX = d.x; burke.targetY = d.y - 40; } const angle = Math.atan2(burke.targetY - burke.y, burke.targetX - burke.x); burke.x += Math.cos(angle) * burke.speed; burke.y += Math.sin(angle) * burke.speed; burke.scanAngle = angle; const player = desks[desks.length-1]; const dist = Math.hypot(burke.x - player.x, burke.y - player.y); let suspicionRate = 0; if (isUsingPhone) { suspicionRate += 0.8; if (dist < 200) suspicionRate += 1.2; if (dist < 100) suspicionRate += 2.5; } else { heat -= 0.3; } students.forEach((s, i) => { if(i === desks.length-1) return; if(isUsingPhone && Math.hypot(desks[i].x - player.x, desks[i].y - player.y) < 200) { if(Math.random() < s.snitchChance) { s.state = 'snitching'; s.snitchTimer = 80; snitchBox.style.display = 'block'; snitchBox.style.left = desks[i].x + 'px'; snitchBox.style.top = (desks[i].y - 30) + 'px'; heat += 12; burke.targetX = player.x; burke.targetY = player.y - 40; burke.speed = 2.8; } } if(s.state === 'snitching') { s.snitchTimer--; if(s.snitchTimer <= 0) { s.state = 'normal'; snitchBox.style.display = 'none'; burke.speed = 1.2; } } }); heat += suspicionRate; heat = Math.max(0, Math.min(100, heat)); heatBar.style.width = heat + "%"; if(heat >= 100) { gameOver = true; gameOverEl.classList.remove('hidden'); } if(isUsingPhone && !gameOver) { memesSent += 0.12; const count = Math.floor(memesSent); memeCountEl.innerText = count + "/50"; objProgress.style.width = (Math.min(count, 50)/50 * 100) + "%"; if(count >= 50) { gameOver = true; document.getElementById('end-title').innerText = "MISSION SUCCESS!"; document.getElementById('end-title').style.color = "#2ecc71"; document.getElementById('end-msg').innerText = "All memes sent. Mr. Burke never suspected a thing."; gameOverEl.classList.remove('hidden'); } } }function draw() { ctx.fillStyle = '#2d3436'; ctx.fillRect(0,0,width,height); desks.forEach((d, i) => { ctx.fillStyle = d.isPlayer ? '#3498db' : '#95a5a6'; ctx.beginPath(); ctx.arc(d.x, d.y, 15, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = '#8e44ad'; ctx.fillRect(d.x-25, d.y-35, 50, 20); ctx.fillStyle = '#fff'; ctx.fillRect(d.x-20, d.y-32, 40, 5); }); ctx.fillStyle = 'rgba(231, 76, 60, 0.2)'; ctx.beginPath(); ctx.moveTo(burke.x, burke.y); ctx.arc(burke.x, burke.y, 150, burke.scanAngle - 0.5, burke.scanAngle + 0.5); ctx.lineTo(burke.x, burke.y); ctx.fill(); ctx.fillStyle = '#e74c3c'; ctx.beginPath(); ctx.arc(burke.x, burke.y, 18, 0, Math.PI*2); ctx.fill(); }function loop() { update(); draw(); requestAnimationFrame(loop); }init(); loop();<\/script></body></html>`
+            }
+        };
+
+        function showPage(pageId) {
+            document.querySelectorAll('section').forEach(section => section.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.remove('hidden');
+            const targetBtn = document.getElementById('btn-' + pageId);
+            if (targetBtn) targetBtn.classList.add('active');
+            if (games[pageId]) {
+                const gameConfig = games[pageId];
+                const iframe = document.getElementById(gameConfig.iframeId);
+                if (iframe && !iframe.src) {
+                    const blob = new Blob([gameConfig.source], { type: 'text/html' });
+                    iframe.src = URL.createObjectURL(blob);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
